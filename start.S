@@ -42,7 +42,7 @@
 #	define MEM_CTL_BASE		0x48000000
 	ldr r0, =MEM_CTL_BASE
 	adr r1, sdram_cfg_value
-	add r3, #(13*4)
+	add r3, r0, #(13*4)
 1:
 	ldr r2, [r1], #4
 	str r2, [r0], #4
