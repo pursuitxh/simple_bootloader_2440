@@ -65,8 +65,8 @@ void nand_send_cmd(unsigned char cmd)
 
 void nand_send_addr(unsigned int addr)
 {
-	unsigned int col = addr/2048;
-	unsigned int page = addr%2048;
+	unsigned int col = addr%2048;
+	unsigned int page = addr/2048;
 
 	NFADDR = col & 0xff;
 	delay();
@@ -103,7 +103,7 @@ void nand_deselect(void)
 void nand_read(unsigned int addr, unsigned char *buf, unsigned int len)
 {
 	int i = 0;
-	int col = addr/2048;
+	int col = addr%2048;
 
 	nand_select();
 	while(i < len) {
