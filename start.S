@@ -52,7 +52,15 @@
 /* 5. relocate: copy bootloader code into linked address */
 	@TODO:
 	ldr sp, =0x34000000
-	bl copy_code_to_sdram
+
+	bl nand_init
+
+	mov r0, #0
+	ldr r1, =_start
+	ldr r2, =__bss_start
+	sub r2, r2, r1
+	bl copy_bootloader_to_sdram
+	bl clear_bss
 
 /* 6. execute main */
 	ldr lr, =halt
