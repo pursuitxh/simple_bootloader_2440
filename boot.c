@@ -5,8 +5,9 @@
  * email:  pursuitxh@gmail.com
  */
 
-int main(int argc, char *argc[])
+int main(int argc, char *argv[])
 {
+#if 0
 	void (*theKernel)(int zero, int arch, unsigned int params);
 
 	/* 0. setup serial port */
@@ -24,4 +25,7 @@ int main(int argc, char *argc[])
 	/* 3. start boot kernel */
 	theKernel = (void (*)(int, int, unsigned int))0x30008000;
 	theKernel(0, 362, 0x30000100);
+#endif
+	
+	return 0;
 }
