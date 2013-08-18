@@ -34,7 +34,7 @@ int norflash_boot(void)
 
 }
 
-void bss_clear(void)
+void clear_bss(void)
 {
 	extern int __bss_start, __bss_end;
 	int *p = &__bss_start;
