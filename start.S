@@ -5,7 +5,7 @@
  * email:  pursuitxh@gmail.com
  */
 
- .gobal _start
+ .global _start
  _start:
 
 /* 1.set the cpu to SVC32 mode */
