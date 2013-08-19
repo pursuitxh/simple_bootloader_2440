@@ -1,30 +1,46 @@
-# file: boot.c
+# file: Makefile
 # created on: 2013-08-18
 # author: pursuitxh
 # email:  pursuitxh@gmail.com
 
-CC 		= arm-linux-gcc
-LD 		= arm-linux-ld
-OBJCOPY 	= arm-linux-objcopy
-OBJDUMP		= arm-linux-objdump
+CROSS_COMPILE	?= arm-linux-
+
+TOPDIR := $(shell pwd)
+INCLUDEDIR := $(TOPDIR)/include
+
+CC 		= $(CROSS_COMPILE)gcc
+LD 		= $(CROSS_COMPILE)ld
+OBJCOPY 	= $(CROSS_COMPILE)objcopy
+OBJDUMP		= $(CROSS_COMPILE)objdump
 
 CFLAGS		= -O2 -g
 ASFLAGS		= -O2 -g
-LDFLAGS		= -Tboot.lds
-CPPFLAGS	= -nostartfiles -nostdlib
+LDFLAGS		= -T$(TOPDIR)/init/boot.lds
+CFLAGS	    += -nostartfiles -nostdlib -fno-builtin -I$(TOPDIR)/include
 
-OBJS := start.o init.o boot.o
+export CC LD OBJCOPY OBJDUMP CFLAGS ASFLAGS LDFLAGS CPPFLAGS
+export TOPDIR
 
+obj-y += init/
+#obj-y += driver/
+obj-y += command/
+#obj-y += shell/
 
-bootloader.bin: $(OBJS)
-	$(LD) $(LDFLAGS) -o bootloader.elf $^
-	$(OBJCOPY) -O binary -S bootloader.elf $@
-	$(OBJDUMP) -D -m arm bootloader.elf > bootloader.dis
+TARGET := bootloader
 
-%.o:%.c
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
-%.o:%.S
-	$(CC) $(CPPFLAGS) $(ASFLAGS) -c -o $@ $<
-	
+all:
+	make -f $(TOPDIR)/makefile.mk -C $(TOPDIR)
+	$(LD) $(LDFLAGS) -o $(TARGET).elf built-in.o
+	$(OBJCOPY) -O binary -S $(TARGET).elf $(TARGET) 
+	$(OBJDUMP) -D -m arm $(TARGET).elf > $(TARGET).dis
+	mkdir -p $(TOPDIR)/out
+	mv $(TARGET) $(TARGET).elf $(TARGET).dis $(TOPDIR)/out/
+
 clean:
-	rm -f *.o *.bin *.elf *.dis
+	rm -f $(shell find -name "*.o") $(TARGET)
+
+distclean:
+	rm -f $(shell find -name "*.o") $(TARGET)
+	rm -f $(shell find -name "*.elf")
+	rm -f $(shell find -name "*.dis")
+	rm -rf $(TOPDIR)/out
