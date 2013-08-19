@@ -23,7 +23,7 @@ export TOPDIR
 
 #obj-y += example.o
 obj-y += init/
-#obj-y += driver/
+obj-y += driver/
 obj-y += command/
 #obj-y += shell/
 
