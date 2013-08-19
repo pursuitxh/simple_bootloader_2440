@@ -8,11 +8,6 @@
 #ifndef _S3C2440_H_
 #define _S3C2440_H_
 
-/* NandFlash Registers */
-#define TACLS   0
-#define TWRPH0  3
-#define TWRPH1  0
-
 #define NFCONF (*((volatile unsigned long *)0x4E000000))
 #define NFCONT (*((volatile unsigned long *)0x4E000004))
 #define NFCMMD (*((volatile unsigned char *)0x4E000008))
