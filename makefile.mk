@@ -35,9 +35,9 @@ built-in.o: $(cur_objs) $(subdir_objs)
 
 dep_file = .$@.d
 
-%.o:%c
-	$(CC) $(CFLAGS) -Wp,-MD, $(dep_file) -c -o $@ $<
-%.o:%S
-	$(CC) $(CFLAGS) -Wp,-MD, $(dep_file) -c -o $@ $<
+%.o:%.c
+	$(CC) $(CFLAGS) -Wp,-MD,$(dep_file) -c -o $@ $<
+%.o:%.S
+	$(CC) $(CFLAGS) -Wp,-MD,$(dep_file) -c -o $@ $<
 
 .PHONY: $(PHONY)
