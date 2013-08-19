@@ -16,11 +16,12 @@ OBJDUMP		= $(CROSS_COMPILE)objdump
 CFLAGS		= -O2 -g
 ASFLAGS		= -O2 -g
 LDFLAGS		= -T$(TOPDIR)/init/boot.lds
-CFLAGS	    += -nostartfiles -nostdlib -fno-builtin -I $(TOPDIR)/include
+CFLAGS	    += -nostartfiles -nostdlib -fno-builtin -I$(TOPDIR)/include
 
 export CC LD OBJCOPY OBJDUMP CFLAGS ASFLAGS LDFLAGS
 export TOPDIR
 
+#obj-y += example.o
 obj-y += init/
 #obj-y += driver/
 obj-y += command/

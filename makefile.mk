@@ -14,23 +14,25 @@ include Makefile
 _subdir-y := $(patsubst %/, %, $(filter %/, $(obj-y)))
 subdir-y += $(_subdir-y)
 
-subdir_objs := $(foreach f, $(subdir-y), $(f)/built-in.o)
 cur_objs := $(filter-out %/, $(obj-y))
-
 dep_files := $(wildcard, $(foreach f, $(cur_objs), .$(f).d))
 
 ifneq ($(dep_files), )
 	include $(dep_files)
 endif
 
+builtin-obj = built-in.o
+
+obj-y := $(patsubst %/, %/$(builtin-obj), $(obj-y))
+
 PHONY += $(subdir-y)
 
-_build: $(subdir-y) built-in.o
+_build: $(subdir-y) $(builtin-obj) 
 
 $(subdir-y):
 	make -f $(TOPDIR)/makefile.mk -C $@
 
-built-in.o: $(cur_objs) $(subdir_objs)
+$(builtin-obj): $(obj-y)
 	$(LD) -r -o $@ $^
 
 dep_file = .$@.d
