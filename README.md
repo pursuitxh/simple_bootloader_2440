@@ -10,7 +10,4 @@ c. read kernel from nandflash into sdram
 a. set the parameters which will pass to kernel
 b. jumb to the entry address of kernel, and execute the kernel
 
-references:
-1. Weidongshan
-2. S-Boot
-3. Liwuyan  
+
