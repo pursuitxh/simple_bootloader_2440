@@ -200,5 +200,5 @@ void printf(const char *fmt, ...)
 	i = vsnprintf (print_buf, sizeof(print_buf),fmt, args);
 	va_end (args);
 
-	put_uart(print_buf, i);
+	uart_queue(print_buf, i);
 }

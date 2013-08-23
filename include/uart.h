@@ -8,7 +8,14 @@
 #ifndef __UART_H_
 #define __UART_H_
 
+#define PCLK            50000000
+#define UART_CLK        PCLK
+#define UART_BAUD_RATE  115200
+#define UART_BRD        ((UART_CLK  / (UART_BAUD_RATE * 16)) - 1)
+#define TXD0READY   	(1<<2)
 
-void put_uart(char *p,int num);
+void uart_init(void);
+void putc(unsigned char c);
+void uart_queue(char *p,int len);
 
 #endif /* __UART_H_ */
