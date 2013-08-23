@@ -17,7 +17,7 @@
  */
 
 #include "div64.h"
-#include "print.h"
+#include "stdio.h"
 #include "uart.h"
 
 static char print_buf[1024];
