@@ -25,7 +25,7 @@ export TOPDIR
 obj-y += init/
 obj-y += driver/
 obj-y += command/
-#obj-y += shell/
+obj-y += shell/
 
 TARGET := bootloader
 

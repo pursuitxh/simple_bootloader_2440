@@ -5,13 +5,10 @@
  * email:  pursuitxh@gmail.com
  */
 
-int main(int argc, char *argv[])
+void boot(void)
 {
 #if 0
 	void (*theKernel)(int zero, int arch, unsigned int params);
-
-	/* 0. setup serial port */
-	uart_init();
 
 	/* 1. read kernel from nandflash into sdram */
 	nand_read(0x60000+64, 0x30008000, 0x200000);
