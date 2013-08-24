@@ -24,5 +24,5 @@ void boot(void)
 	theKernel(0, 362, 0x30000100);
 #endif
 	
-	return 0;
+	return;
 }

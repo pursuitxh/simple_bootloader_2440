@@ -16,9 +16,6 @@ typedef char * va_list;
 #define va_arg(ap,t)    ( *(t *)((ap += _INTSIZEOF(t)) - _INTSIZEOF(t)) )
 #define va_end(ap)      ( ap = (va_list)0 )
 
-const char *digits="0123456789abcdef";
-char numbers[68];
-
 #define FORMAT_TYPE_MASK	0xff00
 #define FORMAT_TYPE_SIGN_BIT	0x0100
 #define FORMAT_TYPE_NONE	0x000

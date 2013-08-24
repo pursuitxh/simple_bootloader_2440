@@ -20,6 +20,8 @@
 #include "stdio.h"
 #include "uart.h"
 
+static const char *digits="0123456789abcdef";
+static char numbers[68];
 static char print_buf[1024];
 
 void * memcpy(void * dest,const void *src,unsigned int count)
