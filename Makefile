@@ -23,6 +23,8 @@ export TOPDIR
 
 obj-y += init/
 obj-y += shell/
+obj-y += driver/
+obj-y += command/
 
 TARGET := bootloader.bin
 
