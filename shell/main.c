@@ -25,11 +25,12 @@ int main(int argc, char *argv[])
 {
 	uart_init();
 
-	printf("just for test our bootloader can print or not\n");
-	printf("haha\n");
-	printf("it get out\n");
+	printf("\r\njust for test our bootloader can print or not\n");
+	printf("\r\nhaha\n");
+	printf("\r\nit get out\n");
 
 	GPFCON = GPF4_out|GPF5_out|GPF6_out;
+
 	unsigned int i = 0;
 	while(1){
 		wait(1000000);

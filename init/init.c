@@ -43,7 +43,6 @@ void copy_bootloader_to_sdram(unsigned char *src, unsigned char *dst,
 		}
 	} else {
 		nand_read((unsigned int)src, dst, len);
-
 	}
 
 }
