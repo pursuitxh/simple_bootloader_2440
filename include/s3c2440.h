@@ -30,4 +30,7 @@
 #define GPHCON		(*(volatile unsigned long *)0x56000070)
 #define GPHUP		(*(volatile unsigned long *)0x56000078)
 
+#define	GPFCON		(*(volatile unsigned long *)0x56000050)
+#define	GPFDAT		(*(volatile unsigned long *)0x56000054)
+
 #endif /* _S3C2440_H_ */

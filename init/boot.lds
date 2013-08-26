@@ -8,9 +8,7 @@
 ENTRY(_start)
 SECTIONS {
     . = 0x33f80000;
-    .text : {
-		 *(.text) 
-	}
+    .text : {*(.text)}
 
     . = ALIGN(4);
     .rodata : {*(.rodata*)} 
