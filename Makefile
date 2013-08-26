@@ -21,13 +21,10 @@ CFLAGS	    += -nostartfiles -nostdlib -fno-builtin -I$(TOPDIR)/include
 export CC LD OBJCOPY OBJDUMP CFLAGS ASFLAGS LDFLAGS
 export TOPDIR
 
-#obj-y += example.o
 obj-y += init/
-obj-y += driver/
-obj-y += command/
 obj-y += shell/
 
-TARGET := bootloader
+TARGET := bootloader.bin
 
 all:
 	make -f $(TOPDIR)/makefile.mk -C $(TOPDIR)

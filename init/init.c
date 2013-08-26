@@ -35,13 +35,15 @@ void copy_bootloader_to_sdram(unsigned char *src, unsigned char *dst,
 {
 	unsigned int i = 0;
 
+
 	if (is_norflash_boot) {
 		while (i < len) {
-			*src++ = *dst++;
+			*dst++ = *src++;
 			i++;
 		}
 	} else {
 		nand_read((unsigned int)src, dst, len);
 
 	}
+
 }

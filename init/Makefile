@@ -1,1 +1,2 @@
-obj-y += start.o init.o
+#obj-y += nandflash/
+obj-y += start.o nandflash.o init.o

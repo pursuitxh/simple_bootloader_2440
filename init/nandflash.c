@@ -14,6 +14,8 @@ void nand_init(void)
 	NFCONF = (TACLS<<12)|(TWRPH0<<8)|(TWRPH1<<4);
 	/* enable nandflash controller, ECC, disable chip select */
 	NFCONT = (1<<4)|(1<<1)|(1<<0);
+
+
 }
 
 static void delay(void)
