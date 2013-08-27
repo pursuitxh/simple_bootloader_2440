@@ -14,6 +14,23 @@ void putc(unsigned char c)
 	    UTXH0 = c;
 }
 
+unsigned char getc(void)
+{
+	unsigned char ret;
+
+	while(!(UTRSTAT0 & RXD0READY));
+
+	ret = URXH0;
+	if (ret == 0x0d || ret == 0x0a) {
+		putc(0x0d);
+		putc(0x0a);
+	} else {
+		putc(ret);		
+	}
+
+	return ret;
+}
+
 void uart_queue(char *p,int len){
 	while(*p&&len--){
 		putc(*p++);
@@ -30,5 +47,4 @@ void uart_init(void)
 	UFCON0  = 0x00;
 	UMCON0  = 0x00;
 	UBRDIV0 = UART_BRD;
-
 }

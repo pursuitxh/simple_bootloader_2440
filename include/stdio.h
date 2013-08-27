@@ -10,6 +10,14 @@
 #ifndef __PRINT_H
 #define __PRINT_H
 
+
+#define INT_MAX		((int)(~0U>>1))
+#define INT_MIN		(-INT_MAX - 1)
+#define UINT_MAX	(~0U)
+#define LONG_MAX	((long)(~0UL>>1))
+#define LONG_MIN	(-LONG_MAX - 1)
+#define ULONG_MAX	(~0UL)
+
 typedef char * va_list;
 #define _INTSIZEOF(n)   ((sizeof(n)+sizeof(int)-1)&~(sizeof(int) - 1) )
 #define va_start(ap,v)  ( ap = (va_list)&v + _INTSIZEOF(v) )
@@ -59,5 +67,6 @@ typedef char * va_list;
 
 int vsnprintf(char *buf, int size, const char *fmt, va_list args);
 void printf(const char *fmt, ...);
+int scanf(const char * fmt, ...);
 
 #endif /* __PRINT_H_ */

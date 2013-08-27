@@ -74,7 +74,6 @@ void nand_read(unsigned int addr, unsigned char *buf, unsigned int len)
 	while(i < len) {
 		/* 1.send read command 0x00h */
 		nand_send_cmd(0x00);
-
 		/* 2.send address */
 		nand_send_addr(addr);
 		/* 3.send command 0x30h */
