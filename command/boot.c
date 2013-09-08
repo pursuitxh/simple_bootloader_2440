@@ -7,6 +7,7 @@
 
 #include "tag.h"
 #include "boot.h"
+#include "uart.h"
 
 static struct tag *params;
 static char *commandline = "noinitrd root=/dev/mtdblock3 init=/linuxrc console=ttySAC0";
@@ -85,6 +86,7 @@ static void setup_end_tag(void)
 void boot_kernel()
 {
 	/* 1. copy kernel from nandflash into sdram */
+	printf("read kernel from nandflash...\n");
 	nand_read(0x60000+64, (unsigned char *)0x30008000, 0x200000);
 
 	/* 2. setup u-boot parameters */

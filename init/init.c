@@ -5,6 +5,9 @@
  * email:  pursuitxh@gmail.com
  */
 
+#include "nandflash.h"
+#include "boot.h"
+
 int is_norflash_boot(void)
 {
 	volatile unsigned int *p = (unsigned int *)0;
@@ -18,7 +21,6 @@ int is_norflash_boot(void)
 	} else {
 		return 1;   //boot from norflash
 	}
-
 }
 
 void clear_bss(void)
@@ -35,7 +37,7 @@ void copy_bootloader_to_sdram(unsigned char *src, unsigned char *dst,
 {
 	unsigned int i = 0;
 
-	if (is_norflash_boot) {
+	if (is_norflash_boot()) {
 		while (i < len) {
 			*dst++ = *src++;
 			i++;

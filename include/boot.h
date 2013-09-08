@@ -9,5 +9,6 @@
 #define __BOOT_H_
 
 void boot_kernel();
+int is_norflash_boot();
 
 #endif /* __BOOT_H_ */

@@ -8,6 +8,7 @@
 #include "uart.h"
 #include "stdio.h"
 #include "s3c2440.h"
+#include "boot.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,14 +20,20 @@ int main(int argc, char *argv[])
 		printf("\n ************************************** \n\r");
 		printf("\n **** Simple BootLoader for JZ2440 **** \n\r");
 		printf("\n ************************************** \n\r");
-		printf("1: Boot Linux from Nand Flash.\n\r");
+		printf("\n\r");
+		if (is_norflash_boot())
+			printf("\nboot from norflash\n\r");
+		else
+			printf("\nboot from nandflash\n\r");
+			
+		printf("1: Boot Linux from SDRAM.\n\r");
 		printf("\nSelect Number: \n\r");
 
 		scanf("%d", &num);
 
 		switch (num) {
 		case 1:
-			printf(" boot linux from nandflash...\n\r");
+			printf(" boot linux from sdram...\n\r");
 			boot_kernel();
 			break;
 		default:
