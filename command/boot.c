@@ -14,6 +14,8 @@ void (*theKernel)(int zero, int arch, unsigned int params);
 
 static void setup_start_tag (void *tag_addr)
 {
+	params = (struct tag *)tag_addr;
+	
 	params->hdr.tag = ATAG_CORE;
 	params->hdr.size = tag_size (tag_core);
 

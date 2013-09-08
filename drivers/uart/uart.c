@@ -14,6 +14,16 @@ void putc(unsigned char c)
 	    UTXH0 = c;
 }
 
+void puts(char *str)
+{
+	int i = 0;
+	while (str[i])
+	{
+		putc(str[i]);
+		i++;
+	}
+}
+
 unsigned char getc(void)
 {
 	unsigned char ret;

@@ -17,6 +17,7 @@
 
 void uart_init(void);
 void putc(unsigned char c);
+void puts(char *str);
 unsigned char getc(void);
 void uart_queue(char *p,int len);
 
