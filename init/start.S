@@ -86,7 +86,12 @@ start_code:
 	cmp r0, r3
 	bne 1b
 
-/* 5. set stack */
+/* 5. enable ICACHE */
+	mrc p15, 0, r0, c1, c0, 0	@ read control reg
+	orr r0, r0, #(1<<12)
+	mcr	p15, 0, r0, c1, c0, 0   @ write it back
+
+/* 6. set stack */
 	msr cpsr, #(DISABLE_IRQ|DISABLE_FIQ|IRQ_MODE)
 	ldr sp, = _IRQ_STACK
 
@@ -105,7 +110,7 @@ start_code:
 	msr cpsr, #(DISABLE_IRQ|DISABLE_FIQ|SVC_MODE)
 	ldr sp, = _SVC_STACK
 
-/* 6. relocate: copy bootloader code into linked address */
+/* 7. relocate: copy bootloader code into linked address */
 	bl nand_init
 
 	mov r0, #0
@@ -115,7 +120,7 @@ start_code:
 	bl copy_bootloader_to_sdram
 	bl clear_bss
 
-/* 7. execute main */
+/* 8. execute main */
 	ldr lr, =halt
 	ldr pc, =main
 halt:
